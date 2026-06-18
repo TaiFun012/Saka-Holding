@@ -7,11 +7,11 @@ interface NavItem {
 }
 
 const navItems = ref<NavItem[]>([
-  { id: 'about', name: 'О компании' },
+  { id: 'about', name: 'Главная' },
   { id: 'catalog', name: 'Каталог' },
-  { id: 'services', name: 'Услуги' },
-  { id: 'production', name: 'Производство' },
-  { id: 'cooperation', name: 'Сотрудничество' },
+  { id: 'company', name: 'О компании' },
+  { id: 'news', name: 'Новости' },
+  { id: 'cooperation', name: 'Доставка и оплата' },
   { id: 'contacts', name: 'Контакты' }
 ]);
 
@@ -67,8 +67,7 @@ const selectItem = (id: string) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
-              border-color 0.3s ease;
+  transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease;
   outline: none;
 }
 

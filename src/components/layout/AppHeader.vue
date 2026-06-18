@@ -40,6 +40,7 @@ import HeaderSwitcher from '@/components/header/HeaderSwitcher.vue';
 <style scoped>
 
 
+
 .app-header {
   width: 100%;
   background-color: #19242F;
