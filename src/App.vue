@@ -7,6 +7,7 @@ import AppSlider from '@/components/ui/AppSlider.vue'
 import NewsCard from '@/components/ui/NewsCard.vue';
 import AppFooter from '@/components/Footer/AppFooter.vue';
 import Fabric from '@/components/layout/Fabric.vue'
+import Information from '@/components/layout/Information.vue';
 import { ref } from 'vue'
 
 const imageUrl = new URL('@/assets/images/devochka.png', import.meta.url).href
@@ -87,10 +88,15 @@ const newsList = ref([
 ])
 
 const customFabrics = [
-  { name: 'Ткань 1', image: '/images/tkan1.jpg' },
-  { name: 'Ткань 2', image: '/images/tkan2.jpg' },
-  // ... остальные
+  { name: 'Футер 3-х Нитка', image: '@/assets/images/footer3nits.png' },
+  { name: 'Френч Терри', image: '@/assets/images/frenchterri.png' },
+  { name: 'Вискоза', image: '@/assets/images/viskoza.png' },
+  { name: 'Пике', image: '@/assets/images/pike.png' },
+  { name: 'Кулинарная гладь', image: '@/assets/images/kulinarglad.png' },
+  { name: 'Бифлекс', image: '@/assets/images/biflex.png' },
 ]
+
+import factoryImg from '@/assets/images/information.png'
 
 </script>
 
@@ -125,7 +131,15 @@ const customFabrics = [
     <Fabric :items="customFabrics" />
 
   </div>
-  
+  <div>
+  <Information 
+    :image-url="factoryImg" 
+    titlePrefix="Saka Tekstil – для тех, кто хочет быстро и комфортно получать текстильную продукцию высокого качества по адекватной стоимости"
+    :highlights="['высокого качества по адекватной стоимости']"
+    :items="['Предоставляем возможность закупки широкого ассортимента: футер, кулирка, джакарт, флис, рибана и многое другое…', 'Наша компания является надежным поставщиком и производителем турецкого трикотажного полотна по всему миру']"
+    highlightColor="#E4B97C"
+    bgColor="#f9f9f9"/>
+  </div>
   <AppFooter />
    
 </template>

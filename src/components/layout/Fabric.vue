@@ -1,16 +1,71 @@
 <template>
-  <section class="fabrics-section">
-    <div class="container">
-      <h2 class="section-title" v-html="title"></h2>
-      
-      <div class="fabrics-grid">
-        <div 
-          v-for="(fabric, index) in items" 
-          :key="index" 
-          class="fabric-card"
-          :style="{ backgroundImage: `url(${fabric.image})` }"
-        >
-          <span class="fabric-label">{{ fabric.name }}</span>
+  <section class="fabric">
+    <div class="fabric__container">
+      <h2 class="fabric__title">
+        Выбирайте из множества<br />
+        разновидностей тканей
+      </h2>
+
+      <div class="fabric__grid">
+
+        <div class="fabric-card fabric-card--wide">
+          <img
+            src="@/assets/images/footer3nits.png"
+            alt="Футер 3-х Нитка"
+          />
+          <button class="fabric-card__badge">
+            Футер 3-х Нитка
+          </button>
+        </div>
+
+        <div class="fabric-card fabric-card--small">
+          <img
+            src="@/assets/images/frenchterri.png"
+            alt="Френч Терри"
+          />
+          <button class="fabric-card__badge">
+            Френч Терри
+          </button>
+        </div>
+
+        <div class="fabric-card fabric-card--wide">
+          <img
+            src="@/assets/images/viskoza.png"
+            alt="Вискоза"
+          />
+          <button class="fabric-card__badge">
+            Вискоза
+          </button>
+        </div>
+
+        <div class="fabric-card fabric-card--small">
+          <img
+            src="@/assets/images/pike.png"
+            alt="Пике"
+          />
+          <button class="fabric-card__badge">
+            Пике
+          </button>
+        </div>
+
+        <div class="fabric-card fabric-card--wide">
+          <img
+            src="@/assets/images/kulinarglad.png"
+            alt="Кулинарная гладь"
+          />
+          <button class="fabric-card__badge">
+            Кулинарная гладь
+          </button>
+        </div>
+
+        <div class="fabric-card fabric-card--wide">
+          <img
+            src="@/assets/images/biflex.png"
+            alt="Бифлекс"
+          />
+          <button class="fabric-card__badge">
+            Бифлекс
+          </button>
         </div>
       </div>
     </div>
@@ -26,99 +81,125 @@ const props = defineProps({
   items: {
     type: Array,
     default: () => [
-      { name: 'Футер 3-х Нитка', image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=600&auto=format&fit=crop' },
-      { name: 'Френч Терри', image: 'https://images.unsplash.com/photo-1543342194-befc9c5a257b?q=80&w=600&auto=format&fit=crop' },
-      { name: 'Вискоза', image: 'https://images.unsplash.com/photo-1521577352947-9ba6fb1d86cb?q=80&w=600&auto=format&fit=crop' },
-      { name: 'Пике', image: 'https://images.unsplash.com/photo-1620799140188-3b2a5fd0a0d5?q=80&w=600&auto=format&fit=crop' },
-      { name: 'Кулинарная гладь', image: 'https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=600&auto=format&fit=crop' },
-      { name: 'Бифлекс', image: 'https://images.unsplash.com/photo-1550614000-4b9519e7514a?q=80&w=600&auto=format&fit=crop' }
+      { name: 'Футер 3-х Нитка', image: '/src/assets/images/footer3nits.png', class: 'fabric-card--wide' },
+      { name: 'Френч Терри', image: '/src/assets/images/frenchterri.png', class: 'fabric-card--small' },
+      { name: 'Вискоза', image: '/src/assets/images/viskoza.png', class: 'fabric-card--wide' },
+      { name: 'Пике', image: '/src/assets/images/pike.png', class: 'fabric-card--small' },
+      { name: 'Кулинарная гладь', image: '/src/assets/images/kulinarglad.png', class: 'fabric-card--wide' },
+      { name: 'Бифлекс', image: '/src/assets/images/biflex.png', class: 'fabric-card--wide' }
     ]
   }
 })
+
+const emit = defineEmits(['card-click'])
+
+const handleCardClick = (fabric) => {
+  emit('card-click', fabric)
+}
 </script>
 
 <style scoped>
-.fabrics-section {
-  background-color: #1a222c;
-  padding: 60px 0;
+.fabric {
+  background: #19242F;
+  padding: 80px 0;
+}
+
+.fabric__container {
   width: 100%;
-}
-
-.container {
-  max-width: 1320px;
+  max-width: 1078px;
   margin: 0 auto;
-  padding: 0 20px;
 }
 
-.section-title {
-  color: #ffffff;
-  font-size: 28px;
+.fabric__title {
+  margin: 0 0 34px;
+  color: #fff;
+  font-size: 30px;
   font-weight: 600;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.3;
-  margin: 0 0 40px 0;
+  line-height: 1.15;
 }
 
-.fabrics-grid {
+.fabric__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: 402px 228px 402px;
+  grid-template-rows: 211px 211px;
+  gap: 28px 34px;
 }
 
 .fabric-card {
   position: relative;
-  border-radius: 16px;
-  background-color: #2e3949;
-  background-size: cover;
-  background-position: center;
-  aspect-ratio: 3 / 2;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 16px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  border-radius: 18px;
 }
 
-.fabric-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+.fabric-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
-.fabric-label {
-  background-color: #e8c98a;
-  color: #1a222c;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 8px 16px;
+.fabric-card--wide {
+  width: 402px;
+  height: 211px;
+}
+
+.fabric-card--small {
+  width: 228px;
+  height: 211px;
+}
+
+.fabric-card:nth-child(1) { grid-column: 1; grid-row: 1; width: 450px; left: 0; }
+.fabric-card:nth-child(2) { grid-column: 2; grid-row: 1; width: 240px;  left: 40px;}
+.fabric-card:nth-child(3) { grid-column: 3; grid-row: 1; width: 360px; left: 45px; }
+
+.fabric-card:nth-child(4) { grid-column: 1; grid-row: 2; width: 240px; left: 0; }
+.fabric-card:nth-child(5) { grid-column: 2; grid-row: 2; width: 360px;  left: -170px;}
+.fabric-card:nth-child(6) { grid-column: 3; grid-row: 2; width: 450px; left: -45px; }
+
+.fabric-card__badge {
+  position: absolute;
+  left: 18px;
+  bottom: 22px;
+  padding: 8px 14px;
   border-radius: 6px;
-  letter-spacing: 0.3px;
-  z-index: 2;
-  text-align: center;
-  white-space: nowrap;
+  background: #d8bf82;
+  color: #232323;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: background 0.2s ease;
 }
 
-@media (max-width: 1199px) and (min-width: 769px) {
-  .fabrics-grid {
-    grid-template-columns: repeat(2, 1fr);
+.fabric-card__badge:hover {
+  background: #c9ae70;
+}
+
+@media (max-width: 1100px) {
+  .fabric__container {
+    padding: 0 20px;
+  }
+
+  .fabric__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+
+  .fabric-card:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 402 / 211;
   }
 }
 
 @media (max-width: 768px) {
-  .fabrics-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  
-  .section-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-  }
-
-  .fabric-card {
-    padding: 12px;
+  .fabric__title {
+    font-size: 32px;
   }
 }
 </style>
