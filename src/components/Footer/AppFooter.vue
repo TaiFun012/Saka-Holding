@@ -137,7 +137,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
   margin-top: auto;
   padding-bottom: 2px;
 }
@@ -146,8 +146,9 @@
   font-size: 14px;
   font-weight: 500;
   color: #ffffff;
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
+  white-space: nowrap;
 }
 
 .social-icons {
@@ -245,6 +246,7 @@
   width: 18px;
   height: 18px;
   object-fit: contain;
+  margin-top: 50px;
 }
 
 .phone-number {
@@ -252,6 +254,7 @@
   font-weight: 500;
   color: #ffffff;
   letter-spacing: 0.5px;
+  margin-top: 50px;
 }
 
 .footer-copyright {
@@ -260,6 +263,7 @@
   font-weight: 400;
   line-height: 1.5;
   text-align: right;
+  margin-top: 50px;
 }
 
 @media (max-width: 1200px) {

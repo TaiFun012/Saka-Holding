@@ -6,6 +6,7 @@ import SpecialOffer from '@/components/ui/SpecialOffer.vue';
 import AppSlider from '@/components/ui/AppSlider.vue'
 import NewsCard from '@/components/ui/NewsCard.vue';
 import AppFooter from '@/components/Footer/AppFooter.vue';
+import Fabric from '@/components/layout/Fabric.vue'
 import { ref } from 'vue'
 
 const imageUrl = new URL('@/assets/images/devochka.png', import.meta.url).href
@@ -85,6 +86,12 @@ const newsList = ref([
   },
 ])
 
+const customFabrics = [
+  { name: 'Ткань 1', image: '/images/tkan1.jpg' },
+  { name: 'Ткань 2', image: '/images/tkan2.jpg' },
+  // ... остальные
+]
+
 </script>
 
 <template>
@@ -113,6 +120,11 @@ const newsList = ref([
         />
       </div>
     </section>
+     <div>
+   
+    <Fabric :items="customFabrics" />
+
+  </div>
   
   <AppFooter />
    
