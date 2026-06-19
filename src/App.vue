@@ -8,6 +8,9 @@ import NewsCard from '@/components/ui/NewsCard.vue';
 import AppFooter from '@/components/Footer/AppFooter.vue';
 import Fabric from '@/components/layout/Fabric.vue'
 import Information from '@/components/layout/Information.vue';
+import Reputation from './components/layout/Reputation.vue';
+import CollorBanner from './components/layout/CollorBanner.vue';
+import ShirtCollor from './components/ui/ShirtCollor.vue';
 import { ref } from 'vue'
 
 const imageUrl = new URL('@/assets/images/devochka.png', import.meta.url).href
@@ -98,6 +101,32 @@ const customFabrics = [
 
 import factoryImg from '@/assets/images/information.png'
 
+import cert1 from '@/assets/images/kachestvo.svg'
+import cert2 from '@/assets/images/svodetelstvo.svg'
+import cert3 from '@/assets/images/kachestvo2.svg'
+
+const items = ref([
+  { image: cert1, title: 'Certificate 1' },
+  { image: cert2, title: 'Certificate 2' },
+  { image: cert3, title: 'Certificate 3' },
+])
+
+const colors = [
+  { id: 1, src: '@/assets/icons/Shrit.svg', label: 'A-104 Dark Grey' },
+  { id: 2, src: '@/assets/icons/shirt2.svg', label: 'A-101 Grey' },
+  { id: 3, src: '@/assets/icons/shirt3.svg', label: 'A-115 White' },
+  { id: 4, src: '@/assets/icons/shirt4.svg', label: 'A-123 Black' },
+  { id: 5, src: './assets/shirt-dark-blue.svg', label: 'A-106 Dark Blue' },
+  { id: 6, src: './assets/shirt-blue.svg', label: 'A-107 Blue' },
+  
+  { id: 7, src: './assets/shirt-light-blue.svg', label: 'A-118 Light Blue' },
+  { id: 8, src: './assets/shirt-orange.svg', label: 'A-135 Orange' },
+  { id: 9, src: './assets/shirt-green.svg', label: 'A-136 Green' },
+  { id: 10, src: './assets/shirt-yellow.svg', label: 'A-125 Yellow' },
+  { id: 11, src: './assets/shirt-purple.svg', label: 'A-201 Purple' },
+  { id: 12, src: './assets/shirt-red.svg', label: 'A-100 Red' },
+]
+
 </script>
 
 <template>
@@ -140,6 +169,21 @@ import factoryImg from '@/assets/images/information.png'
     highlightColor="#E4B97C"
     bgColor="#f9f9f9"/>
   </div>
+  <div>
+    <Reputation :items="items" />
+  </div>
+  <div>
+    <CollorBanner />
+  </div>
+  <div class="swatch-container">
+    <ShirtCollor 
+      v-for="item in colors" 
+      :key="item.id"
+      :image-src="item.src"
+      :label="item.label"
+    />
+  </div>
+  
   <AppFooter />
    
 </template>

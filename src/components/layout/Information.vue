@@ -27,13 +27,9 @@
           </ul>
 
           <div class="button-wrapper">
-            <slot name="button">
-              <button class="default-button" :style="{ backgroundColor: highlightColor }">
-                Смотреть каталог
-                <span class="arrow">→</span>
-              </button>
-            </slot>
+            <ActionButton text="Смотреть каталог" />
           </div>
+
         </div>
       </div>
 
@@ -43,6 +39,7 @@
 
 <script setup>
 import { defineProps } from 'vue'
+import ActionButton from '@/components/ui/ActionButton.vue'
 
 const props = defineProps({
   imageUrl: {
@@ -107,7 +104,6 @@ const props = defineProps({
   object-fit: cover;
   display: block;
   border-radius: 0 16px 16px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .content-column {
@@ -173,28 +169,6 @@ const props = defineProps({
   margin-top: 8px;
 }
 
-.default-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 32px;
-  color: #1a1a1a;
-  border: none;
-  border-radius: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-}
-
-.default-button:hover {
-  opacity: 0.9;
-}
-
-.default-button .arrow {
-  font-size: 20px;
-  line-height: 1;
-}
 
 @media (max-width: 1200px) {
   .content-column {
