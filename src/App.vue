@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
+import { useTheme } from '@/composables/useTheme.ts';
 import AppHeader from '@/components/layout/AppHeader.vue';
 import { RouterView } from 'vue-router';
 import Navigation from '@/components/ui/Navigation.vue';
@@ -11,7 +13,16 @@ import Information from '@/components/layout/Information.vue';
 import Reputation from './components/layout/Reputation.vue';
 import CollorBanner from './components/layout/CollorBanner.vue';
 import ShirtCollor from './components/ui/ShirtCollor.vue';
+import SectionTitle from '@/components/ui/SectionTitle.vue'
+import Form from './components/ui/Form.vue';
+import Recently from './components/layout/Recently.vue';
 import { ref } from 'vue'
+
+const { initTheme } = useTheme();
+
+onMounted(() => {
+  initTheme();
+});
 
 const imageUrl = new URL('@/assets/images/devochka.png', import.meta.url).href
 
@@ -112,26 +123,41 @@ const items = ref([
 ])
 
 const colors = [
-  { id: 1, src: '@/assets/icons/Shrit.svg', label: 'A-104 Dark Grey' },
-  { id: 2, src: '@/assets/icons/shirt2.svg', label: 'A-101 Grey' },
-  { id: 3, src: '@/assets/icons/shirt3.svg', label: 'A-115 White' },
-  { id: 4, src: '@/assets/icons/shirt4.svg', label: 'A-123 Black' },
-  { id: 5, src: './assets/shirt-dark-blue.svg', label: 'A-106 Dark Blue' },
-  { id: 6, src: './assets/shirt-blue.svg', label: 'A-107 Blue' },
-  
-  { id: 7, src: './assets/shirt-light-blue.svg', label: 'A-118 Light Blue' },
-  { id: 8, src: './assets/shirt-orange.svg', label: 'A-135 Orange' },
-  { id: 9, src: './assets/shirt-green.svg', label: 'A-136 Green' },
-  { id: 10, src: './assets/shirt-yellow.svg', label: 'A-125 Yellow' },
-  { id: 11, src: './assets/shirt-purple.svg', label: 'A-201 Purple' },
-  { id: 12, src: './assets/shirt-red.svg', label: 'A-100 Red' },
+  { id: 1, src: new URL('@/assets/icons/Shrit.svg', import.meta.url).href, label: 'A-104 Dark Grey' },
+  { id: 2, src: new URL('@/assets/icons/shirt2.svg', import.meta.url).href, label: 'A-101 Grey' },
+  { id: 3, src: new URL('@/assets/icons/shirt3.svg', import.meta.url).href, label: 'A-115 White' },
+  { id: 4, src: new URL('@/assets/icons/shirt4.svg', import.meta.url).href, label: 'A-123 Black' },
+  { id: 5, src: new URL('@/assets/icons/shirt5.svg', import.meta.url).href, label: 'A-106 Dark Blue' },
+  { id: 6, src: new URL('@/assets/icons/shirt6.svg', import.meta.url).href, label: 'A-107 Blue' },
+  { id: 7, src: new URL('@/assets/icons/shirt7.svg', import.meta.url).href, label: 'A-118 Light Blue' },
+  { id: 8, src: new URL('@/assets/icons/shirt8.svg', import.meta.url).href, label: 'A-135 Orange' },
+  { id: 9, src: new URL('@/assets/icons/shirt9.svg', import.meta.url).href, label: 'A-136 Green' },
+  { id: 10, src: new URL('@/assets/icons/shirt10.svg', import.meta.url).href, label: 'A-125 Yellow' },
+  { id: 11, src: new URL('@/assets/icons/shirt11.svg', import.meta.url).href, label: 'A-201 Purple' },
+  { id: 12, src: new URL('@/assets/icons/shirt12.svg', import.meta.url).href, label: 'A-100 Red' },
 ]
 
+import fabric1 from '@/assets/images/kulinarglad.png'
+import fabric2 from '@/assets/images/footer3nits.png'
+import fabric3 from '@/assets/images/frenchterri.png'
+import fabric4 from '@/assets/images/viskoza.png'
+import fabric5 from '@/assets/images/pike.png'
+import fabric6 from '@/assets/images/biflex.png'
+
+const recentlyItems = ref([
+  { image: fabric1, title: 'Кулинарная гладь', price: '11,4', size: '180' },
+  { image: fabric2, title: 'Футер 3-х Нитка', price: '13', size: '180' },
+  { image: fabric3, title: 'Френч Терри', price: '122,4', size: '180' },
+  { image: fabric4, title: 'Вискоза', price: '13,84', size: '180' },
+  { image: fabric5, title: 'Пике', price: '11,4', size: '180' },
+  { image: fabric6, title: 'Бифлекс', price: '13,84', size: '180' },
+])
 </script>
 
 <template>
    
       <AppHeader />
+      <ThemeSwitcher /> 
       <Navigation /> 
         <main>
           <router-view />
@@ -176,21 +202,65 @@ const colors = [
     <CollorBanner />
   </div>
   <div class="swatch-container">
-    <ShirtCollor 
-      v-for="item in colors" 
-      :key="item.id"
-      :image-src="item.src"
-      :label="item.label"
-    />
+  <ShirtCollor 
+    v-for="item in colors" 
+    :key="item.id"
+    :image-src="item.src"
+    :label="item.label" />
   </div>
+  <SectionTitle title="Сезонная палитра" />
+  <div class="swatch-container">
+  <ShirtCollor 
+    v-for="item in colors" 
+    :key="item.id"
+    :image-src="item.src"
+    :label="item.label" />
+  </div>
+  <Form /> 
+  <div>
+    <Recently :items="recentlyItems" />
+  </div>
+
   
   <AppFooter />
    
 </template>
 
 <style>
+:root {
+  --bg-color: #f6f7f8;
+  --text-color: #1f2937;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --bg-information: #ffffff;
+  --bg-page: #f6f7f8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8f9fa; 
+  --border-color: #e5e7eb;
+  --border-color-hover: #d1d5db;
+  --text-main: #1f2937;
+}
+
+
+html.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --card-bg: #2d2d2d;
+  --border-color: #404040;
+  --bg-information: #1c2128;
+  --bg-page: #1a1a1a;
+  --bg-card: #2d2d2d;
+  --bg-card-hover: #383838; 
+  --border-color: #404040;
+  --border-color-hover: #555555;
+  --text-main: #f0f0f0;
+}
+
 
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0;
   padding: 0;
 }
@@ -257,6 +327,44 @@ body {
   font-weight: 500 !important;
 }
 
+.swatch-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  gap: 32px 24px; 
+  max-width: 1200px;
+  margin: 60px auto; 
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark p, html.dark span, html.dark div, html.dark li {
+  color: #f0f0f0 !important; 
+}
+
+html.dark .section-title, 
+html.dark .product-title, 
+html.dark .shirt-label,
+html.dark .news-card__title,
+html.dark .news-card__description,
+html.dark .form-subtitle,
+html.dark .agreement-text {
+  color: #f0f0f0 !important;
+}
+
+html.dark .action-btn, 
+html.dark .fabric-card__badge,
+html.dark .submit-btn {
+  background-color: #c9ae70 !important; 
+  color: #1a1d1f !important;
+}
+
+html.dark .product-card,
+html.dark .news-card,
+html.dark .shirt-item,
+html.dark .certificate-frame {
+  background-color: #2d2d2d !important;
+  border-color: #404040 !important;
+}
 
 @media (max-width: 992px) {
   .footer-nav-wrapper :deep(.nav-container) {
@@ -264,6 +372,20 @@ body {
   }
   .footer-nav-wrapper :deep(.nav-btn) {
     flex-shrink: 1 !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .swatch-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .swatch-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px 12px;
   }
 }
 

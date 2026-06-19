@@ -129,6 +129,12 @@ const handleCardClick = (fabric) => {
   position: relative;
   overflow: hidden;
   border-radius: 18px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fabric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .fabric-card img {
@@ -147,6 +153,7 @@ const handleCardClick = (fabric) => {
   width: 228px;
   height: 211px;
 }
+
 
 .fabric-card:nth-child(1) { grid-column: 1; grid-row: 1; width: 450px; left: 0; }
 .fabric-card:nth-child(2) { grid-column: 2; grid-row: 1; width: 240px;  left: 40px;}
@@ -183,23 +190,65 @@ const handleCardClick = (fabric) => {
   }
 
   .fabric__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     gap: 20px;
   }
 
+  .fabric-card--wide {
+    grid-column: span 2;
+  }
+
+  .fabric-card--small {
+    grid-column: span 1;
+  }
+
+  
   .fabric-card:nth-child(n) {
-    grid-column: auto;
-    grid-row: auto;
-    width: 100%;
-    height: auto;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    left: 0 !important;
     aspect-ratio: 402 / 211;
+    border-radius: 14px;
+  }
+  .fabric-card--small {
+    aspect-ratio: 228 / 211;
   }
 }
 
+
 @media (max-width: 768px) {
+  .fabric {
+    padding: 40px 0;
+  }
+  
   .fabric__title {
-    font-size: 32px;
+    font-size: 24px;
+  }
+
+  .fabric__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  
+  .fabric-card:nth-child(n) {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 402 / 211 !important;
+    left: 0 !important;
+    border-radius: 12px;
+  }
+
+  .fabric-card__badge {
+    left: 12px;
+    bottom: 14px;
+    padding: 6px 12px;
+    font-size: 13px;
   }
 }
 </style>

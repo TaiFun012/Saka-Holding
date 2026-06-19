@@ -1,5 +1,5 @@
 <template>
-  <section class="information-section" :style="{ backgroundColor: bgColor }">
+  <section class="information-section">
     <div class="information-wrapper">
       
       <div class="image-column">
@@ -70,11 +70,8 @@ const props = defineProps({
   highlightColor: {
     type: String,
     default: '#D4B06A'
-  },
-  bgColor: {
-    type: String,
-    default: '#ffffff'
   }
+
 })
 </script>
 
@@ -84,7 +81,13 @@ const props = defineProps({
   padding: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow: hidden;
+  background-color: var(--bg-information);
 }
+
+:global(.dark) .information-section {
+  background-color: var(--bg-information) !important; 
+}
+
 
 .information-wrapper {
   display: flex;
@@ -124,7 +127,7 @@ const props = defineProps({
   font-size: 32px;
   font-weight: 500;
   line-height: 1.3;
-  color: #1a1a1a;
+  color: var(--text-main);
   margin: 0 0 32px 0;
 }
 
@@ -161,14 +164,13 @@ const props = defineProps({
 .features-list p {
   font-size: 16px;
   line-height: 1.6;
-  color: #333333;
+  color: var(--text-main);
   margin: 0;
 }
 
 .button-wrapper {
   margin-top: 8px;
 }
-
 
 @media (max-width: 1200px) {
   .content-column {

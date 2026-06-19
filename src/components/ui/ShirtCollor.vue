@@ -1,24 +1,14 @@
 <template>
-  <div class="color-card">
-    <div class="color-card__image-wrap">
-      
-      <img 
-        :src="imageSrc" 
-        :alt="label || 'Цвет футболки'" 
-        class="color-card__image"
-      />
+  <div class="shirt-item">
+    <div class="shirt-image-wrapper">
+      <img :src="imageSrc" :alt="alt || label" />
     </div>
-    <div class="color-card__label">
-      {{ label }}
-    </div>
+    <p class="shirt-label">{{ label }}</p>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-
-const props = defineProps({
-
+defineProps({
   imageSrc: {
     type: String,
     required: true
@@ -26,55 +16,55 @@ const props = defineProps({
   label: {
     type: String,
     required: true
+  },
+  alt: {
+    type: String,
+    default: ''
   }
 })
 </script>
 
 <style scoped>
-.color-card {
+.shirt-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  width: 100%;
   text-align: center;
+  cursor: pointer;
+  padding: 8px; 
 }
 
-.color-card__image-wrap {
+.shirt-image-wrapper {
+  width: 100%;
+  max-width: 90px; 
+  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 12px;
+}
+
+.shirt-image-wrapper img {
   width: 100%;
-  height: 90px; 
+  height: 100%;
+  object-fit: contain; 
 }
 
-.color-card__image {
-  max-width: 80px;
-  max-height: 90px;
-  object-fit: contain;
-  transition: transform 0.2s ease;
-}
-
-
-.color-card:hover .color-card__image {
-  transform: scale(1.05);
-}
-
-.color-card__label {
+.shirt-label {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1f2937;
+  margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1e1e1e;
-  line-height: 1.2;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.3px;
 }
 
-@media (max-width: 480px) {
-  .color-card__image {
-    max-width: 60px;
-    max-height: 70px;
+@media (max-width: 600px) {
+  .shirt-image-wrapper {
+    max-width: 50px;
+    margin-bottom: 6px;
   }
-  .color-card__label {
+  .shirt-label {
     font-size: 12px;
   }
 }

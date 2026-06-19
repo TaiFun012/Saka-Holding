@@ -37,7 +37,7 @@
   align-items: center;
   gap: 15px;
   padding: 30px;
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   max-width: 1200px;
   margin: 0 auto;
@@ -49,7 +49,7 @@
   font-size: 26px;
   font-weight: 600;
   line-height: 1.3;
-  color: #1e1e1e;
+  color: var(--text-main);
   flex: 1;
 }
 
@@ -74,7 +74,7 @@
   font-size: 13px;
   line-height: 1.6;
   font-weight: 400;
-  color: #1e1e1e;
+  color: var(--text-main);
   letter-spacing: 0.2px;
 }
 
